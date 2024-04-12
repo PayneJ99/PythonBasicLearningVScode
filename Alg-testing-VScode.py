@@ -40,7 +40,7 @@ def convertRtoD(Rval):
 print("Select what you would like to do:" "\n")
 
 Option = input("1: Convert radians to degrees" "\n"
-"2: Sort a list" "\n")
+"2: Sort a list" "\n""3: Basic Calculator" "\n")
 
 match Option:
     case "1":
