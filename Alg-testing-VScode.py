@@ -33,6 +33,25 @@ def listAdd(l):
 def convertRtoD(Rval):
     return (Rval)*(180/math.pi)
 
+def calculator(valOne, valTwo, Operator):
+
+    if Operator == "multiply" or "mult" or "Mult" or "Multiply" or "x" or "X" or "*":
+        calcedVal = valOne * valTwo
+        Operator = "x"
+    elif Operator == "Divide" or "divide" or "Div" or "div" or "/":
+        calcedVal = valOne / valTwo
+        Operator = "/"
+    elif Operator == "Add" or "add" or "+":
+        calcedVal = valOne + valTwo
+        Operator = "+"
+    elif Operator == "Subtract" or "subtract" or "-" or "sub" or "Sub":
+        calcedVal = valOne - valTwo
+        Operator = "-"
+    else: 
+        print("that is not a valid option please try again")
+        calculator(valOne, valTwo, Operator)
+    print(valOne + " " + Operator + " " + valTwo + "= " + calcedVal)
+
 
 
 
@@ -52,5 +71,11 @@ match Option:
         unorderedList = []
         listAdd(unorderedList)
         print(unorderedList)
+
+    case "3":
+        valOne = float(input("What is the first number used in the calculation?" "\n"))
+        operator = float(input("What is the second number used in the calculation?" "\n"))
+        valTwo = float(input("What would you like to do to these values? options include multiply, divide, add, subtract" "\n"))
+        calculator(valOne,valTwo,operator)
         
         
