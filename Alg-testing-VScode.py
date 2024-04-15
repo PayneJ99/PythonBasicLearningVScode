@@ -58,8 +58,11 @@ def calculator(valOne, valTwo, Operator):
 
 print("Select what you would like to do:" "\n")
 
-Option = input("1: Convert radians to degrees" "\n"
-"2: Sort a list" "\n""3: Basic Calculator" "\n")
+Option = input(
+    "1: Convert radians to degrees" "\n"
+    "2: Sort a list" "\n"
+    "3: Basic Calculator" "\n"
+    "4: Guessing Game" "\n")
 
 match Option:
     case "1":
@@ -78,4 +81,6 @@ match Option:
         valTwo = float(input("What would you like to do to these values? options include multiply, divide, add, subtract" "\n"))
         calculator(valOne,valTwo,operator)
         
+    case "4":
+        pass
         
