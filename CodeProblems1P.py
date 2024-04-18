@@ -8,8 +8,8 @@ class mergeArrays(object):
     def merge(nums1, m, nums2, n):
         
         #simple way replace nums1 starting at m (since m is also how many elements need merged and lists start at 0 it replaces all values past m in the list )
-        nums1[m+1:] = nums2
-        print(nums1)
+        nums1[m:] = nums2
+        
         nums1.sort()
 
     def merge2(nums1, m, nums2, n):
@@ -32,7 +32,56 @@ class mergeArrays(object):
             k -=1 
             j -=1
 
-nums1 = [1,2,3,0,0,0]
+#These work in LeetCode solutions however I could not get them to run by themselves.
+class rElement(object): 
+    def rElement(nums, val):
+        j = 0
+        length = len(nums)
+        while j < length:
+            if nums[j] == val:
+                nums[j] = nums[length-1]
+                length-=1
+                print(nums)
+            else:
+                j+=1
+        
+        return length
+    
+    def rElement2(nums, val):
+        for i in range(nums.count(val)):
+            nums.remove(i)
+            return len(nums)
+
+class removeDupe(object):
+    def rDuplicates(nums):
+        
+        j = 0 
+
+        while j<len(nums)-1:
+            if nums[j] == nums[j+1]:
+                nums.pop(j+1)
+            else:
+                j= j + 1
+
+    def rDuplicates2(nums):
+	
+        if len(nums) < 2:
+            return len(nums)
+        
+        current = 0
+        #can also use for next in range to iterate through a range of numbers 
+        for next in range(1, len(nums)):
+            if nums[next] != nums[current] :
+                current += 1
+                nums[current] = nums[next];            
+        
+        return current + 1
+
+
+
+
+#Code to test the solutions/functions uncomment as needed
+'''nums1 = [1,2,3,]
 m = 3
 nums2 = [2,5,6]
 n = 3
@@ -40,4 +89,11 @@ n = 3
 mergeArrays.merge(nums1, m , nums2, n)
 print(nums1)
 mergeArrays.merge2(nums1, m , nums2, n)
-print(nums1)        
+print(nums1)     '''   
+
+
+'''nums = [3,2,2,3]
+val = [3]
+print(rElement.rElement(nums, val))
+print(nums)'''
+
