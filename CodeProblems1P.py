@@ -1,3 +1,4 @@
+#Most notes are handwritten as that is the most efficient way I find to work through a problem
 #Merge sorted arrays
 #You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
 #Merge nums1 and nums2 into a single array sorted in non-decreasing order.
@@ -77,6 +78,128 @@ class removeDupe(object):
         
         return current + 1
 
+#combination sum - research   
+class sumCombo:
+    def combinationSum(candidates: list[int], target: int) -> list[list[int]]:
+        #creates a list of size target+1 and populates them each with []
+        cache = [[] for _ in range(target + 1)]
+        cache[0] = [[]]
+        for c in candidates:
+            for i in range(target + 1):
+                if i >= c:
+                    for temp_ans in cache[i - c]:
+                        cache[i].append(temp_ans + [c])
+        return cache[-1]
+
+#leetcode 9-Easy Palindromes
+class Palindrome:
+    def isPalindrome(x: int) -> bool: #palindrome without converting to string 
+        
+        #keep track of original value for final check
+        Orig = x
+        y = 0
+        while x>0:
+
+            #gives the end value and gets it ready for the next value to be added 
+            y = y*10
+            y = x%10 + y
+            #gives next whole number
+            x = round(x/10)
+
+        if Orig == y:
+            return True
+        else:
+            return False
+    
+    def isPalindrome(x: int) -> bool: #palindrome utilizing string conversion
+        
+        x = str(x)
+        #slices the string starting at the last value and going in reverse 
+        y = x[::-1]
+        if x == y:
+            return True
+        else:
+            return False
+        
+
+# leetcode 10-Hard - Regular expression matching - still working through misunderrstood how it wanted it at first    
+class regexpMatch:
+    def isMatch(self, s: str, p: str) -> bool:
+        
+        retVal = "true"
+        ofsVal = 0 
+
+        while p[0] not in [s[0], '.']:
+            return False
+        
+
+        for element in range(0, len(p)):
+            
+            print('hit')
+            if (len(p) == 1 and len(s)>1):
+
+                if p[element] != "*":
+                    print("hit")
+                    return False
+            
+            
+
+            
+            if p[element] == "*":
+                print([element-1])
+                print([element+ofsVal])
+                if p[element-1] == "." or s[element+ofsVal]:
+                    ofsVal +=1
+                    element -=1
+                else: 
+                    return False
+        
+        return True
+
+#First attempt runtime 53ms mem 16.76mb
+class rtoI:
+    def romanToInt(self, s: str) -> int:
+        countVal = 0
+        while s != "":
+
+
+            if s[0] == "I" and (("V" in s) or ("X" in s)):
+                
+                countVal = countVal - 1
+                
+            elif s[0] == "X" and (("L" in s) or ("C" in s)):
+                
+                countVal = countVal - 10
+
+            elif s[0] == "C" and (("M" in s) or ("D" in s)):
+                
+                countVal = countVal - 100
+                
+            else:
+                
+                match s[0]:
+                    case "I":
+                        countVal +=1
+                    case "V":
+                        countVal +=5
+                    case "X":
+                        countVal +=10
+                    case "L":
+                        countVal +=50
+                    case "C":
+                        countVal +=100
+                    case "D":
+                        countVal +=500
+                    case "M":
+                        countVal +=1000
+
+            
+            s = s[1:]
+            
+
+        return countVal
+    
+
 
 
 
@@ -97,3 +220,13 @@ val = [3]
 print(rElement.rElement(nums, val))
 print(nums)'''
 
+'''candidates = [2,3,6,7]
+target = 7
+returnVal = sumCombo.combinationSum(candidates, target)
+print("The returning values: " + str(returnVal))'''
+
+
+x = 12345
+y = round(x/10)
+print(x)
+print(y)
