@@ -84,6 +84,7 @@ class sumCombo:
         #creates a list of size target+1 and populates them each with []
         cache = [[] for _ in range(target + 1)]
         cache[0] = [[]]
+        #number of values in candidates
         for c in candidates:
             for i in range(target + 1):
                 if i >= c:
@@ -156,7 +157,7 @@ class regexpMatch:
         
         return True
 
-#First attempt runtime 53ms mem 16.76mb
+#First attempt
 class rtoI:
     def romanToInt(self, s: str) -> int:
         countVal = 0
@@ -199,9 +200,38 @@ class rtoI:
 
         return countVal
     
+class searchInsert:
+    def searchInsert(nums: list[int], target: int) -> int:
+        i = 0
+        for n in range(0,len(nums)):      
+            if nums[n] == target:
+                return i
+            elif nums[n] > target:
+                return i
+            i = i+1 
+        return i
+    
+class sqrRoot:
+    #finding sqrroot without using pow 
+    def mySqrt(x: int) -> int:
+        i = 0
 
+        while i*i <= x:
+            i +=1
 
+        return i-1
 
+    #using newtons method of solving for sqrroot
+    def mySqrt2(self, x: int) -> int:
+    
+        b = x
+
+        while b*b > x: 
+            b=(b+x/b)/2
+            print((b+x//b)//2)
+
+        #needs the int as dividing turns the value into a float adding a .0 after the value reverting back into an int gets rid of this 
+        return int(b)
 
 #Code to test the solutions/functions uncomment as needed
 '''nums1 = [1,2,3,]
