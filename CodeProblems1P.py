@@ -158,7 +158,7 @@ class regexpMatch:
         return True
 
 #First attempt
-class rtoI:
+'''class rtoI:
     def romanToInt(self, s: str) -> int:
         countVal = 0
         while s != "":
@@ -199,7 +199,7 @@ class rtoI:
             
 
         return countVal
-    
+  '''  
 class searchInsert:
     def searchInsert(nums: list[int], target: int) -> int:
         i = 0
@@ -232,6 +232,99 @@ class sqrRoot:
 
         #needs the int as dividing turns the value into a float adding a .0 after the value reverting back into an int gets rid of this 
         return int(b)
+    
+'''class binarrytreeTraversal:
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        x = []
+
+        def _postOrder(root):
+            if root:
+                x.append(root.val)
+                
+                _postOrder(root.right)
+                _postOrder(root.left)
+                
+
+        _postOrder(root)
+
+        x.reverse()
+        return x
+    
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        x = []
+
+        def _preorder(root):
+            if root:
+                x.append(root.val)
+                _preorder(root.left)
+                _preorder(root.right)
+                
+            
+        
+        _preorder(root)
+        return x
+    '''
+def create_staircase(nums):
+  while len(nums) != 0:
+    step = 1
+    subsets = []
+    if len(nums) >= step:
+      subsets.append(nums[0:step])
+      nums = nums[step:]
+      step += 1
+    else:
+      return False
+
+  return subsets
+
+def create_staircase1(nums):
+  step = 1
+  subsets = []
+  while len(nums) != 0:
+    if len(nums) >= step:
+      subsets.append(nums[0:step])
+      nums = nums[step:]
+      step += 1
+    else:
+      return False
+      
+  return subsets
+
+def decode_message(file):
+
+    f = open(file, "r")
+    lines = f.readlines()
+    val = 1
+    pyrLayer = 1 
+    valsinLayer = 0
+    output = ""
+    test = 0
+
+    while val <= len(lines):
+        for row in lines:
+
+            if row.startswith(str(val) + " "):
+                
+                valsinLayer +=1
+                while pyrLayer == valsinLayer:
+                    
+                    output = output + (lines[lines.index(row)]).split(" ")[1].rstrip() + " "
+                
+                    pyrLayer +=1
+                    valsinLayer = 0
+
+        val = val+1
+
+    return output
+
+#Since our function should be processing an input file it is the only argument I used other than local variables within the function. 
+#Now we start by opening the file and using the readlines() method to grab each separate line in our file. 
+#We follow that up by initializing all of the local variables that we will need in this case being val a counting variable used to go through each line, pyrLayer which holds what layer of the pyramid we are currently building from top to bottom, valsinLayer holding how many values we have seen at the current pyramid layer, and output which initially is holding an empty string and will contain any words that have been decoded. 
+#Now we are using a while loop in conjunction with for loops and if statements to iterate through all lines and find which lines would correspond to the numbers at the end of each pyramid line. 
+#for row in lines: is used to again iterate through the entire list of lines while using the if row.startswith(str(val) + " "): statement to find the next value that would be appended onto the end of that layer of the pyramid. 
+#Finally, the while pyrLayer == valsinLayer: loop at the center will only happen when the value we are apending is at the end of that line of the yramid and should be decoded therefore we use output = output + (lines[lines.index(row)]).split(" ")[1].rstrip() + " " to get rid of the initial number and newline tag and add the decoded string to our final output variable. 
+
+
 
 #Code to test the solutions/functions uncomment as needed
 '''nums1 = [1,2,3,]
@@ -256,7 +349,32 @@ returnVal = sumCombo.combinationSum(candidates, target)
 print("The returning values: " + str(returnVal))'''
 
 
-x = 12345
-y = round(x/10)
-print(x)
-print(y)
+'''x = [1, 2, 3, 4, 5, 6]
+y = []
+f = open("coding_qual_input.txt", "r")
+lines = f.readlines()
+val = 1
+pyrLayer = 1 
+valsinLayer = 0
+print(lines)
+output = ""
+
+
+while val <= len(lines):
+    for row in lines:
+        if row.startswith(str(val) + " "):
+            
+            valsinLayer +=1
+            while pyrLayer == valsinLayer:
+                print('line Number:', lines.index(row)+1)
+                output = output + (lines[lines.index(row)]).split(" ")[1].rstrip() + " "
+                
+                pyrLayer +=1
+                valsinLayer = 0
+
+    val = val+1
+
+print(output)'''
+
+print(decode_message("coding_qual_input.txt"))
+
